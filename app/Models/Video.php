@@ -11,7 +11,7 @@ class Video extends Model
 
     protected $table = "videos";
 
-    protected $fillable = ['image_path', 'project_id'];
+    protected $fillable = ['video_path', 'project_id'];
 
     public function project()
     {
