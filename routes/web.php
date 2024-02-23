@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/videos/video-edit', [VideoController::class, 'showVideoPage'])->name('videos.video-edit');
+Route::post('/upload-video', [VideoController::class, 'uploadVideo'])->name('uploadVideo');
+Route::delete('/delete-video', [VideoController::class, 'deleteVideo'])->name('delete-video');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
