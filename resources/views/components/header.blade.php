@@ -9,6 +9,9 @@
         <!-- Right side of the header -->
         <ul class="flex gap-4">
             @if(Auth::check())
+                <li class="login flex items-center"> <!-- Added flex and items-center to align vertically -->
+                    <h4 class="text-white mb-1">Welcome, {{ Auth::user()->name }}</h4> <!-- Added mb-1 for margin-bottom -->
+                </li>
                 <li class="login">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
