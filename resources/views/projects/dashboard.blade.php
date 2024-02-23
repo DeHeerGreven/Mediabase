@@ -13,7 +13,7 @@
         <div class="grid grid-cols-3 gap-4">
             @foreach ($projects as $project)
             <div class="bg-white p-4 rounded shadow-md">
-                <h1>{{$project->name}}</h1>
+                <h1>{{$project->name}}</h1>     
             </div>
             @endforeach
         </div>
