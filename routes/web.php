@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/projects/{project}/edit-image', [ProjectController::class, 'editImage'])->name('projects.edit-image');
+Route::patch('/projects/{project}/update-image', [ProjectController::class, 'updateImage'])->name('projects.update-image');
 
 require __DIR__.'/auth.php';
