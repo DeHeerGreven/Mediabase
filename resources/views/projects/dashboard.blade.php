@@ -11,21 +11,11 @@
         </div>
 
         <div class="grid grid-cols-3 gap-4">
-            
-            <!-- Hier voeg je de data grid items toe -->
+            @foreach ($projects as $project)
             <div class="bg-white p-4 rounded shadow-md">
-                <p>test </p>
+                <h1>{{$title}}</h1>
             </div>
-            <div class="bg-white p-4 rounded shadow-md">
-                <p>test</p>
-            </div>
-            <div class="bg-white p-4 rounded shadow-md">
-                <!-- Inhoud van grid item 3 -->
-            </div>
-            <div class="bg-white p-4 rounded shadow-md">
-                <!-- Inhoud van grid item 3 -->
-            </div>
-            <!-- Voeg meer grid items toe zoals hierboven -->
+            @endforeach
         </div>
     </div>
     
