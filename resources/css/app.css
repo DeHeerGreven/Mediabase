@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.h1.logo {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    display: flex;
+    color: #ffffff; /* White text color */
+    padding: 10px 10px; /* Add some padding to the header */
+    max-height: 90px;
+    text-align: left; /* Ensure text alignment is left */
+}
+
+.header-content {
+    flex-grow: 1; /* Allow the header content to grow and fill available space */
+}
+
+.header-content ul {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding-top: 15px;
+    margin-left: auto; /* Push the ul containing the login/logout button to the right */
+}
+
+.footer {
+    color: white; /* Text color */
+    padding: 15px 10px; /* Add padding to the footer */
+    width: 100%; /* Full width */
+    max-height: 74px;
+    position: fixed; /* Fixed position */
+    bottom: 0; /* Align to the bottom of the viewport */
+    text-align: left; /* Ensure text alignment is left */
+}
