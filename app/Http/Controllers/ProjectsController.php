@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
-class ProjectsControllor extends Controller
+class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,15 +41,16 @@ class ProjectsControllor extends Controller
         ]);
     
         // Create a new project instance with the validated data
-        $project = Project::create([
+        Project::create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'status' => $validatedData['status'],
         ]);
     
         // Optionally, you can return a response to the user
-        return redirect()->route('projects.dashboard')->with('success', 'Project created successfully');
+        return redirect()->route('projects.index')->with('success', 'Project created successfully');
     }
+    
     
     /**
      * Display the specified resource.
