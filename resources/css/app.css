@@ -35,4 +35,9 @@ header {
     position: fixed; /* Fixed position */
     bottom: 0; /* Align to the bottom of the viewport */
     text-align: left; /* Ensure text alignment is left */
+
+}
+
+.no-underline {
+    text-decoration: none;
 }

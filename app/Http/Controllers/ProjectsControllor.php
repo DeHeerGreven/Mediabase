@@ -25,6 +25,7 @@ class ProjectsControllor extends Controller
     public function create()
     {
         //
+        return view('projects.create');
     }
 
     /**
@@ -32,9 +33,24 @@ class ProjectsControllor extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:Not done,Done',
+        ]);
+    
+        // Create a new project instance with the validated data
+        $project = Project::create([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'status' => $validatedData['status'],
+        ]);
+    
+        // Optionally, you can return a response to the user
+        return redirect()->route('projects.dashboard')->with('success', 'Project created successfully');
     }
-
+    
     /**
      * Display the specified resource.
      */
