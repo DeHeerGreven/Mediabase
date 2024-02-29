@@ -32,10 +32,9 @@ header {
     padding: 15px 10px; /* Add padding to the footer */
     width: 100%; /* Full width */
     max-height: 74px;
-    position: fixed; /* Fixed position */
+    position: fixed;
     bottom: 0; /* Align to the bottom of the viewport */
     text-align: left; /* Ensure text alignment is left */
-
 }
 
 .no-underline {
