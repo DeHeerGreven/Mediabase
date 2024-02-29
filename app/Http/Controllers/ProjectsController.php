@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -63,17 +65,37 @@ class ProjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editPhoto(Project $project)
     {
-        //
+        return view('projects.edit-photo', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function savePhoto(Request $request, Project $project)
     {
-        //
+        // Validate the incoming request
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+        ]);
+
+        // Get the uploaded image
+        $image = $request->file('image');
+
+        // Generate a unique filename for the image
+        $filename = 'project_' . $project->id . '_' . time() . '.' . $image->getClientOriginalExtension();
+
+        // Store the image file
+        $imagePath = $image->storeAs('public/project_images', $filename);
+
+        // Create a new photo record
+        $photo = new Photo();
+        $photo->image_path = 'storage/project_images/' . $filename;
+        $photo->project_id = $project->id;
+        $photo->save();
+
+        return redirect()->route('projects.edit-photo', $project)->with('success', 'Photo uploaded and saved successfully.');
     }
 
     /**
