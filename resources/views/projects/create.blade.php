@@ -15,28 +15,23 @@
                         {{ session('success') }}
                     </div>
                     @endif
-
                     <form method="POST" action="{{ route('projects.store') }}">
                         @csrf
-
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
-
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control" id="description" name="description" required></textarea>
                         </div>
-
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status" required>
                                 <option value="Not done">Not done</option>
                                 <option value="Done">Done</option>
                             </select>
-                        </div>
-
+                        </div>                      
                         <button type="submit" class="btn btn-primary mt-8">Create Project</button>
                     </form>
                 </div>
@@ -44,5 +39,4 @@
         </div>
     </div>
 </div>
-
 @endsection
