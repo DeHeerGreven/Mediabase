@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-14">
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="card">
@@ -37,7 +37,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Create Project</button>
+                        <button type="submit" class="btn btn-primary mt-8">Create Project</button>
                     </form>
                 </div>
             </div>
