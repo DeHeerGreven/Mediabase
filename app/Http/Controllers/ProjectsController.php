@@ -67,8 +67,22 @@ class ProjectsController extends Controller
      */
     public function editPhoto(Project $project)
     {
-        return view('projects.edit-photo', compact('project'));
+        // Get the photo record for the current project
+        $photo = $project->photos->first();
+    
+        // Check if a photo exists for the project
+        if ($photo) {
+            // Get the image path from the photo record
+            $imagePath = $photo->image_path;
+        } else {
+            // Set a default image path if no photo exists
+            $imagePath = 'storage/default_image.jpg'; // Change this to the path of your default image
+        }
+    
+        // Pass the image path to the view
+        return view('projects.edit-photo', compact('project', 'imagePath'));
     }
+    
 
     /**
      * Update the specified resource in storage.
