@@ -17,7 +17,11 @@
         <div class="mt-8">
             <h3 class="text-xl font-semibold mb-4">Preview:</h3>
             <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-                <img src="{{ $project->image_path }}" id="imagePreview" alt="Uploaded Image" class="max-w-full h-auto">
+                @if ($photo)
+                    <img src="{{ asset($photo->image_path) }}" id="imagePreview" alt="Uploaded Image" class="max-w-full h-auto">
+                @else
+                    <div class="text-gray-400">No image uploaded</div>
+                @endif
             </div>
         </div>
     </div>

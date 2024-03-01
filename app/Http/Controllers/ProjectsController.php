@@ -67,7 +67,9 @@ class ProjectsController extends Controller
      */
     public function editPhoto(Project $project)
     {
-        return view('projects.edit-photo', compact('project'));
+        $photo = $project->photo; // Retrieve the associated photo for the project
+        
+        return view('projects.edit-photo', compact('project', 'photo'));
     }
 
     /**

@@ -23,9 +23,9 @@ class Project extends Model
         return $this->hasMany(Video::class);
     }
 
-    public function photos()
+    public function photo()
     {
-        return $this->hasMany(Photo::class);
+        return $this->hasOne(Photo::class, 'project_id');
     }
 
     public function moodboards()
