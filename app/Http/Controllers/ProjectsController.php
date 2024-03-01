@@ -71,6 +71,7 @@ class ProjectsController extends Controller
         
         return view('projects.edit-photo', compact('project', 'photo'));
     }
+    
 
     /**
      * Update the specified resource in storage.
