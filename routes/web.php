@@ -38,7 +38,7 @@ Route::resource('projects', ProjectsController::class)
     
 Route::get('/moodboard', [MoodboardController::class, 'index'])->name('moodboard.index');
 Route::post('/moodboard/upload', [MoodboardController::class, 'upload'])->name('moodboard.upload');
-Route::delete('/moodboard/delete', [MoodboardController::class, 'delete'])->name('moodboard.upload');
+Route::delete('/moodboard/delete', [MoodboardController::class, 'delete'])->name('moodboard.delete');
 
 
     
