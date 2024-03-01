@@ -65,16 +65,34 @@ class ProjectsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('projects.edit')->with([
+            'project' => $project
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        // Valideer en sla de bewerkte gegevens op
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'status' => 'required'
+            // Voeg hier andere gevalideerde velden toe
+        ]);
+
+        // Update de afspraak met de nieuwe gegevens
+        $project->update($validatedData);
+
+        // Redirect terug naar de detailpagina na bewerken
+        return redirect()->route('projects.index', $project->id);
     }
+
 
     /**
      * Remove the specified resource from storage.
