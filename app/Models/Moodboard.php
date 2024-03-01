@@ -25,6 +25,6 @@ class Moodboard extends Model
 
     public function moodboard_photos()
     {
-        return $this->hasMany(Moodboard::class);
+        return $this->hasMany(MoodboardPhoto::class);
     }
 }

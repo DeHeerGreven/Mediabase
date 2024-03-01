@@ -8,11 +8,15 @@
 }
 
 header {
-    display: flex;
-    color: #ffffff; /* White text color */
-    padding: 10px 10px; /* Add some padding to the header */
-    max-height: 90px;
-    text-align: left; /* Ensure text alignment is left */
+    position: static; /* Set header position to fixed */
+    top: 0; /* Stick the header to the top of the viewport */
+    width: 100%; /* Set the header width to 100% of the viewport */
+    z-index: 999; /* Ensure the header appears above other content */
+}
+
+.main-content {
+    padding-top: 90px; /* Adjust this value based on your header's height */
+    padding-bottom: 80px;
 }
 
 .header-content {
@@ -32,11 +36,60 @@ header {
     padding: 15px 10px; /* Add padding to the footer */
     width: 100%; /* Full width */
     max-height: 74px;
-    position: fixed;
     bottom: 0; /* Align to the bottom of the viewport */
     text-align: left; /* Ensure text alignment is left */
+    bottom: 0; /* Align to the bottom of the viewport */
+    text-align: left; /* Ensure text alignment is left */
+
+
+
 }
 
 .no-underline {
     text-decoration: none;
+}
+
+
+
+/* Add this CSS to make images smaller and display them next to each other */
+.moodboard-photo-small {
+    max-width: 100px; /* Adjust the maximum width as needed */
+    margin: 5px; /* Adjust the margin between images as needed */
+    display: inline-block;
+}
+
+/* Add this CSS to create a box around moodboard photos */
+.moodboard-box {
+    border: 2px solid black; /* Black outline */
+    padding: 10px; /* Add some padding inside the box */
+    display: inline-block; /* Ensure the box doesn't take full width */
+}
+
+/* Add this CSS to style the upload button */
+.upload-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Add this CSS to style the blue button */
+.blue-button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style the blue button on hover */
+.blue-button:hover {
+    background-color: darkblue;
+}
+
+#moodboard-box {
+    max-height: 1500px; /* Adjust the height to your desired value */
 }

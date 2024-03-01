@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MoodboardController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\VideoController;
@@ -33,6 +34,12 @@ Route::get('/dashboard', function () {
 
 Route::resource('projects', ProjectsController::class)
     ->middleware(['auth', 'verified']);
+
+    
+Route::get('/moodboard', [MoodboardController::class, 'index'])->name('moodboard.index');
+Route::post('/moodboard/upload', [MoodboardController::class, 'upload'])->name('moodboard.upload');
+Route::delete('/moodboard/delete', [MoodboardController::class, 'delete'])->name('moodboard.upload');
+
 
     
 Route::middleware('auth')->group(function () {
