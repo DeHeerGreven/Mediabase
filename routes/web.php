@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 
 Route::get('/videos/video-edit', [VideoController::class, 'showVideoPage'])->name('videos.video-edit');
+Route::get('/videos/{id}', [VideoController::class, 'showVideoPage'])->name('videos.show-video');
 Route::post('/upload-video', [VideoController::class, 'uploadVideo'])->name('uploadVideo');
 Route::delete('/delete-video', [VideoController::class, 'deleteVideo'])->name('delete-video');
 

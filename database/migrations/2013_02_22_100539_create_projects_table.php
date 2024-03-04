@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->enum('status', ['Not done', 'Done',]);
+            $table->enum('type', ['video', 'photo', 'moodboard'])->nullable();
             $table->timestamps();
         });
     }

@@ -38,6 +38,7 @@ class ProjectsController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'status' => 'required|in:Not done,Done',
+            'type' => 'required|in:video,photo,moodboard',
         ]);
     
         // Create a new project instance with the validated data
@@ -45,6 +46,7 @@ class ProjectsController extends Controller
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'status' => $validatedData['status'],
+            'type' => $validatedData['type'],
         ]);
     
         // Optionally, you can return a response to the user
@@ -57,7 +59,17 @@ class ProjectsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+    // Check the project type and redirect to the appropriate view
+    if ($project->type === 'video') {
+        return redirect()->route('videos.show-video', $project->id);
+    } elseif ($project->type === 'moodboard') {
+        return redirect()->route('moodboards.dashboard');
+    } else {
+        // Handle other types or provide a default view
+        return view('projects.show', compact('project'));
+    }
     }
 
     /**
