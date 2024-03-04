@@ -65,7 +65,7 @@ class MoodboardController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

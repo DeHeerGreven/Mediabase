@@ -31,7 +31,15 @@
                                 <option value="Not done">Not done</option>
                                 <option value="Done">Done</option>
                             </select>
-                        </div>                      
+                        </div>     
+                        <div class="form-group">
+                            <label for="type">Project Type</label>
+                            <select class="form-control" id="type" name="type" required>
+                                <option value="video">Video</option>
+                                <option value="photo">Foto</option>
+                                <option value="moodboard">Moodboard</option>
+                            </select>
+                        </div>                 
                         <button type="submit" class="btn btn-primary mt-8">Create Project</button>
                     </form>
                 </div>

@@ -17,6 +17,8 @@
             <h1 class="text-2xl font-bold">{{$project->name}}</h1> 
             <p>{{$project->description}}</p>        
             <p>{{$project->status}}</p>
+            <p>{{ $project->type }}</p>
+            <a href="{{ route('projects.show', $project->id) }}" class="bg-green-500 p-2 rounded-lg text-white" style="text-decoration: none">View Project</a>
             <a href="{{route('projects.edit', $project->id)}}" class="bg-green-500 p-2 rounded-lg text-white" style="text-decoration: none">Bewerken</a>
         </div>
         @endforeach
