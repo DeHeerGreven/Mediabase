@@ -23,6 +23,7 @@
                     <div class="text-gray-400">No image uploaded</div>
                 @endif
             </div>
+            <button id="saveImageBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Save Edited Image</button>
         </div>
     </div>
 @endsection
@@ -53,6 +54,35 @@
                 };
 
                 reader.readAsDataURL(file);
+            });
+        });
+        const saveImageBtn = document.getElementById('saveImageBtn');
+        saveImageBtn.addEventListener('click', () => {
+            // Get the cropped image data
+            const croppedImageData = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+
+            // Send the cropped image data to the backend
+            fetch('{{ route("projects.save-edited-photo", $project) }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ image: croppedImageData })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to save edited image');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle success
+                console.log('Edited image saved successfully:', data);
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error saving edited image:', error);
             });
         });
     </script>

@@ -101,6 +101,23 @@ class ProjectsController extends Controller
         return redirect()->route('projects.edit-photo', $project)->with('success', 'Photo uploaded and saved successfully.');
     }
 
+    public function saveEditedPhoto(Request $request, Project $project)
+    {
+        // Retrieve the edited image data from the request
+        $editedImageData = $request->input('image');
+
+        // Save the edited image data to storage (example: replace the old image)
+        // Example code: (ensure to adapt it to your storage mechanism)
+        $imagePath = 'storage/project_images/edited_image.jpg';
+        file_put_contents(public_path($imagePath), base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $editedImageData)));
+
+        // Optionally, update the project record in the database if necessary
+        // $project->update(['image_path' => $imagePath]);
+
+        // Return a response (e.g., success message)
+        return response()->json(['message' => 'Edited image saved successfully']);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

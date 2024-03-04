@@ -43,5 +43,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/projects/{project}/edit-photo', [ProjectsController::class, 'editPhoto'])->name('projects.edit-photo');
 Route::post('/projects/{project}/save-photo', [ProjectsController::class, 'savePhoto'])->name('projects.save-photo');
+Route::post('/projects/{project}/save-edited-photo', [ProjectsController::class, 'saveEditedPhoto'])->name('projects.save-edited-photo');
 
 require __DIR__.'/auth.php';
