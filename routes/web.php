@@ -49,4 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/projects/{id}/edit-photo', function () {
+    return view('edit-photo');
+});
+
 require __DIR__.'/auth.php';
