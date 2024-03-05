@@ -18,7 +18,7 @@ class Moodboard extends Model
         return $this->belongsTo(Video::class);
     }
 
-    public function colors()
+    public function color_cards()
     {
         return $this->hasMany(ColorCard::class);
     }

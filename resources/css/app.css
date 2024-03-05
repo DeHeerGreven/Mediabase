@@ -60,9 +60,10 @@ header {
 
 /* Add this CSS to create a box around moodboard photos */
 .moodboard-box {
-    border: 2px solid black; /* Black outline */
-    padding: 10px; /* Add some padding inside the box */
+    border: 1px solid black; /* Black outline */
+
     display: inline-block; /* Ensure the box doesn't take full width */
+    height: 2000px;
 }
 
 /* Add this CSS to style the upload button */
@@ -74,6 +75,8 @@ header {
     color: white;
     border-radius: 5px;
 }
+
+
 
 /* Add this CSS to style the blue button */
 .blue-button {
@@ -90,6 +93,7 @@ header {
     background-color: darkblue;
 }
 
-#moodboard-box {
-    max-height: 1500px; /* Adjust the height to your desired value */
-}
+
+    /* Add this CSS to limit the maximum height of the moodboard box */
+
+

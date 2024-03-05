@@ -36,13 +36,15 @@ Route::get('/dashboard', function () {
 Route::resource('projects', ProjectsController::class)
     ->middleware(['auth', 'verified']);
 
-    
-Route::get('/moodboard', [MoodboardController::class, 'index'])->name('moodboard.index');
-Route::post('/moodboard/upload', [MoodboardController::class, 'upload'])->name('moodboard.upload');
-Route::delete('/moodboard/delete', [MoodboardController::class, 'delete'])->name('moodboard.delete');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/moodboard', [MoodboardController::class, 'index'])->name('moodboard.index');
+        Route::post('/moodboard/upload', [MoodboardController::class, 'upload'])->name('moodboard.upload');
+        Route::delete('/moodboard/delete', [MoodboardController::class, 'delete'])->name('moodboard.delete');
+        Route::post('/moodboard/create', [MoodboardController::class, 'create'])->name('moodboard.create');
+    });
 
-
     
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
