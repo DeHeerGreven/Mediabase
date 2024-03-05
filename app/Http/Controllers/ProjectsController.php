@@ -65,7 +65,7 @@ class ProjectsController extends Controller
     if ($project->type === 'video') {
         return redirect()->route('videos.show-video', $project->id);
     } elseif ($project->type === 'moodboard') {
-        return redirect()->route('moodboards.dashboard');
+        return redirect()->route('moodboard.index');
     } else {
         // Handle other types or provide a default view
         return view('projects.show', compact('project'));
