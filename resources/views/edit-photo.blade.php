@@ -8,10 +8,10 @@
             <div class="p-6 rounded border border-gray-300">
                 <label class="block text-sm font-medium mb-3">Filters</label>
                 <div class="flex flex-wrap -mx-2 mb-4">
-                    <button id="brightness" class="active filter-btn">Brightness</button>
-                    <button id="saturation" class="filter-btn">Saturation</button>
-                    <button id="inversion" class="filter-btn">Inversion</button>
-                    <button id="grayscale" class="filter-btn">Grayscale</button>
+                    <button id="brightness" class="active filter-btn rounded-lg px-4 py-2 mr-2">Brightness</button>
+                    <button id="saturation" class="filter-btn rounded-lg px-4 py-2 mr-2">Saturation</button>
+                    <button id="inversion" class="filter-btn rounded-lg px-4 py-2 mr-2">Inversion</button>
+                    <button id="grayscale" class="filter-btn rounded-lg px-4 py-2">Grayscale</button>
                 </div>
                 <div class="mb-6">
                     <div class="flex justify-between text-sm text-gray-600">
