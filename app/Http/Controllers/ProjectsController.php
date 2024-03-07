@@ -62,14 +62,17 @@ class ProjectsController extends Controller
         $project = Project::findOrFail($id);
 
     // Check the project type and redirect to the appropriate view
-    if ($project->type === 'video') {
-        return redirect()->route('videos.show-video', $project->id);
-    } elseif ($project->type === 'moodboard') {
-        return redirect()->route('moodboard.index');
-    } else {
-        // Handle other types or provide a default view
-        return view('projects.show', compact('project'));
-    }
+        if ($project->type === 'video') {
+            return redirect()->route('videos.show-video', $project->id);
+        } elseif ($project->type === 'moodboard') {
+            return redirect()->route('moodboard.index', $project->id);
+        } elseif ($project->type === 'photo'){
+            return view('edit-photo')->with($project->id);
+        
+        } else {
+            // Handle other types or provide a default view
+            return view('projects.show', compact('project'));
+        }
     }
 
     /**
