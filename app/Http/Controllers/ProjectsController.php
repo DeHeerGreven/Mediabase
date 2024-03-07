@@ -73,6 +73,8 @@ class ProjectsController extends Controller
             // Handle other types or provide a default view
             return view('projects.show', compact('project'));
         }
+        return view('projects.show', compact('project'));
+    
     }
 
     /**
@@ -97,7 +99,8 @@ class ProjectsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'type' => 'required|in:video,photo,moodboard',
             // Voeg hier andere gevalideerde velden toe
         ]);
 
@@ -112,8 +115,10 @@ class ProjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+    
+        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
     }
 }
