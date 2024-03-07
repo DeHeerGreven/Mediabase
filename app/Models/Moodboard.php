@@ -15,7 +15,7 @@ class Moodboard extends Model
 
     public function project()
     {
-        return $this->belongsTo(Video::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function color_cards()

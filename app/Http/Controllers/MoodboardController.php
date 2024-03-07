@@ -6,17 +6,17 @@ use App\Models\Moodboard;
 use Illuminate\Http\Request;
 use App\Models\MoodboardPhoto;
 use App\Models\ColorCard;
-
+use App\Models\Project;
 
 class MoodboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index($project) {
         $moodboard = Moodboard::with(['moodboard_photos', 'color_cards'])->first();
         $colorCards = ColorCard::pluck('hexcode');
-        return view('moodboard.dashboard', compact('moodboard', 'colorCards'));
+        return view('moodboard.dashboard', compact('moodboard', 'colorCards', 'project'));
     }
     
     /**
@@ -51,67 +51,36 @@ class MoodboardController extends Controller
      }
      
 
-     public function create(Request $request)
-     {
-         // Validate the incoming request
-         $request->validate([
-             'name' => 'required|string',
-             'description' => 'required|string',
-             'hex' => 'required|string',
-             'hue' => 'required|numeric',
-             'saturation' => 'required|numeric',
-             'brightness' => 'required|numeric',
-         ]);
-     
-         // Create a new moodboard entry
-         $moodboard = new Moodboard();
-         $moodboard->name = $request->name;
-         $moodboard->description = $request->description;
-         $moodboard->save();
-     
-         // Create a new color card entry
-         $colorCard = new ColorCard();
-         $colorCard->hexcode = $request->hex;
-         $colorCard->moodboard_id = $moodboard->id;
-         $colorCard->save();
-     
-         // You can also save other properties of color card like hue, saturation, and brightness
-         // Assuming these properties are also present in the ColorCard model
-     
-         // Redirect back with success message
-         return redirect()->back()->with('success', 'Moodboard created successfully.');
-     }
-     
+     public function create(Request $request, $projectId)
+        {
+
+            $project = Project::findOrFail($projectId);
+            // Validate the incoming request
+            $request->validate([
+                'name' => 'required|string',
+                'description' => 'required|string',
+                'hex' => 'required|string',
+            ]);
+            // Create a new moodboard entry
+            $moodboard = new Moodboard();
+            $moodboard->name = $request->name;
+            $moodboard->description = $request->description;
+            $moodboard->project_id = $project->id;
+            $moodboard->save();
+            
+            // Create a new color card entry
+            $colorCard = new ColorCard();
+            $colorCard->hexcode = $request->hex;
+            $colorCard->moodboard_id = $moodboard->id;
+            $colorCard->save();
+            
+            // Redirect back with success message
+            return redirect()->back()->with('success', 'Moodboard created successfully.');
+        }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        // Validate the incoming request
-        $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'hex' => 'required|string',
-            'hue' => 'required|numeric',
-            'saturation' => 'required|numeric',
-            'brightness' => 'required|numeric',
-        ]);
-    
-        // Create a new moodboard entry
-        $moodboard = new Moodboard();
-        $moodboard->name = $request->name;
-        $moodboard->description = $request->description;
-        $moodboard->save();
-    
-        // Create a new color card entry
-        $colorCard = new ColorCard();
-        $colorCard->hexcode = $request->hex;
-        $colorCard->moodboard_id = $moodboard->id;
-        $colorCard->save();
-    
-        // Redirect back with success message
-        return redirect()->back()->with('success', 'Moodboard created successfully.');
-    }
+
     
 
     /**

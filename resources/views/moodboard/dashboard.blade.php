@@ -46,7 +46,7 @@
        
     </div>
     <div class="container mt-8 flex flex-col items-start justify-center" style="width: 35vw; margin-left: 9vw; margin-top: -vh; margin-bottom: 10vh">
-        <form action="/moodboard/create" method="post">
+        <form action="{{ route('moodboard.create', $project) }}" method="post">
             @csrf
             <h1>Moodboard Aanmaken</h1>
             <div class="mt-4 mb-3">
@@ -65,6 +65,7 @@
                     <button type="button" onclick="changeColor()" class="btn btn-primary">Toepassen</button>
                 </div>
             </div>
+
         
             <div class="mt-4 mb-3">
                 <label for="hue" class="form-label">Hexdecimale Code:</label>
@@ -96,21 +97,33 @@
         const moodboardBox = document.getElementById("moodboard-box");
 
        
-        moodboardBox.addEventListener("dragover", function(event) {
-            event.preventDefault();
-        });
+       // Prevent default behavior for dragover event
+moodboardBox.addEventListener("dragover", function(event) {
+    event.preventDefault();
+});
 
-        moodboardBox.addEventListener("drop", function(event) {
-            event.preventDefault();
-            const imageSrc = event.dataTransfer.getData("text/plain");
+// Handle drop event
+moodboardBox.addEventListener("drop", function(event) {
+    event.preventDefault();
+    // Get the image file from data transfer
+    const file = event.dataTransfer.files[0];
+    // Check if the dropped item is an image
+    if (file && file.type.startsWith('image/')) {
+        // Create a FileReader object to read the dropped file
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            // Create an img element to display the dropped image
             const img = document.createElement("img");
-            img.src = imageSrc;
+            img.src = event.target.result;
             img.alt = "Moodboard Photo";
             img.classList.add("moodboard-photo-small");
             moodboardBox.appendChild(img);
-            const originalImage = document.querySelector("[src='" + imageSrc + "']");
-            originalImage.parentNode.removeChild(originalImage);
-        });
+        };
+        // Read the dropped file as Data URL
+        reader.readAsDataURL(file);
+    }
+});
+
 
         // Function to change color of clicked small box
         function changeBoxColor(boxId) {

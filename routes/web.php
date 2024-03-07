@@ -29,18 +29,16 @@ Route::post('/upload-video', [VideoController::class, 'uploadVideo'])->name('upl
 Route::delete('/delete-video', [VideoController::class, 'deleteVideo'])->name('delete-video');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    
 
 Route::resource('projects', ProjectsController::class)
     ->middleware(['auth', 'verified']);
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/moodboard', [MoodboardController::class, 'index'])->name('moodboard.index');
+    Route::get('/moodboard/{project}', [MoodboardController::class, 'index'])->name('moodboard.index');
         Route::post('/moodboard/upload', [MoodboardController::class, 'upload'])->name('moodboard.upload');
         Route::delete('/moodboard/delete', [MoodboardController::class, 'delete'])->name('moodboard.delete');
-        Route::post('/moodboard/create', [MoodboardController::class, 'create'])->name('moodboard.create');
+        Route::post('/moodboard/create/{projectId}', [MoodboardController::class, 'create'])->name('moodboard.create');
     });
 
     
